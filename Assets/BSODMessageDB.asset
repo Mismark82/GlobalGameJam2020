@@ -13,7 +13,23 @@ MonoBehaviour:
   m_Name: BSODMessageDB
   m_EditorClassIdentifier: 
   messaggio:
-  - Prova 1
+  - 'A problem has been detected and Windows has been shut down to prevent damage
+
+    to your computer.
+
+
+    YOU_MUST_TRY_HARDER
+
+
+    If this is the first time you''ve seen this Stop error screen
+
+    restart the computer. If this screen appears again follow these steps:
+
+
+    Press any key and do it again N-E-W-B-I-E!
+
+
+    Press any key to continue...'
   - 'A problem has been detected and Windows has been shut down to prevent damage
 
     to your computer.
@@ -28,6 +44,23 @@ MonoBehaviour:
 
 
     Press any key and do it again L-O-S-E-R!
+
+
+    Press any key to continue...'
+  - 'A problem has been detected and Windows has been shut down to prevent damage
+
+    to your computer.
+
+
+    WHAT_THE_HECK_ARE_YOU_DOING_?
+
+
+    If this is the first time you''ve seen this Stop error screen
+
+    restart the computer. If this screen appears again follow these steps:
+
+
+    Press any key and do it again C-A-S-U-A-L-G-A-M-E-R!
 
 
     Press any key to continue...'

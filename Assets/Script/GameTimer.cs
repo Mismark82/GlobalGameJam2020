@@ -21,6 +21,8 @@ public class GameTimer : MonoBehaviour
     public float timeToReach; 
     public float timeRandomOffset;
     public TextMeshPro textMesh;
+    public SequenceCheckerScript sequence;
+    private bool fired = false;
     
 
     [Space(10)]
@@ -38,8 +40,9 @@ public class GameTimer : MonoBehaviour
                 timeAmount += Time.deltaTime;
 
                 //Se il timer raggiunge un valore maggiore o uguale del time to reach + un valore random tra time random offset (+ e -)...
-                if (timeAmount >= timeToReach + Random.Range(-timeRandomOffset, timeRandomOffset))
+                if (!fired && timeAmount >= timeToReach + Random.Range(-timeRandomOffset, timeRandomOffset))
                 {
+                    fired = true;
                     OnTimeReached.Invoke();
                 }
 
@@ -54,12 +57,19 @@ public class GameTimer : MonoBehaviour
                 }
             }
         }
-        textMesh.text = "TIMER:" + Mathf.Round(timeAmount).ToString();
+        if (textMesh!=null)
+            textMesh.text = "TIMER:" + Mathf.Round(timeAmount).ToString();
     }
 
     public void Stop()
     {
         play = false;
+    }
+
+    public void Resume()
+    {
+        play = true; 
+        fired = false;
     }
 
     /// <summary>
@@ -69,6 +79,12 @@ public class GameTimer : MonoBehaviour
     public void AddTime(float time)
     {
         timeAmount += time;
+    }
+
+    public void AddTime()
+    {
+        timeAmount += sequence.GetTime;
+        fired = false;
     }
 
     public float GetTimeAmount()

@@ -7,32 +7,42 @@ public class ScoreManager : MonoBehaviour
 {
     public TextMeshPro scoreText;
 
-    private Transform currentCameraPosition;
-    private float prevCameraPosition;
+    public Transform currentPlayerPosition;
+    private float prevPlayerPosition;
     private int playerScore;
 
     [SerializeField]
     private int scoreMultiply;
-    private float cameraDelta;
+    private float playerDelta;
 
     // Start is called before the first frame update
     void Start()
     {
-        currentCameraPosition = Camera.main.transform;
-        prevCameraPosition = currentCameraPosition.position.y;
+        prevPlayerPosition = currentPlayerPosition.position.y;
     }
 
     // Update is called once per frame
     void Update()
     {
-        cameraDelta += currentCameraPosition.position.y - prevCameraPosition;
-        prevCameraPosition = currentCameraPosition.position.y;
+        //playerDelta += currentPlayerPosition.position.y - prevPlayerPosition;
 
-        if(cameraDelta > 1)
+        /*if(currentPlayerPosition.position.y > prevPlayerPosition + 2)
         {
             playerScore += 1 * scoreMultiply;
-            scoreText.text = "SCORE: " + playerScore;
-            cameraDelta = 0;
+            //playerDelta = 0;
         }
+        else if (currentPlayerPosition.position.y < prevPlayerPosition - 2)
+        {
+            playerScore -= 1 * scoreMultiply;
+            //playerDelta = 0;
+        }
+        else
+        {
+            return;
+        }*/
+        playerScore = (int)currentPlayerPosition.position.y * scoreMultiply;
+        playerScore = Mathf.Clamp(playerScore, 0, 1000000000);
+        scoreText.text = "SCORE: " + playerScore;
+        prevPlayerPosition = currentPlayerPosition.position.y;
     }
 }

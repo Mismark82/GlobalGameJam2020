@@ -13,18 +13,21 @@ public class PlayerMovement : MonoBehaviour
     float horizontalMove = 0f;
     bool jump = false, pausa = false;
     Rigidbody2D rb2d;
+    Animator animatore;
     Vector2 appoVelocity = new Vector2(0,0);
 
     public void Start()
     {
+        animatore = GetComponent<Animator>();
         rb2d = GetComponent<Rigidbody2D>();
         digitalGlitch.enabled = false;
         glitchEffect.enabled = false;
     }
 
+    //Mette in pausa il gioco con il glich
     public void Pause()
     {
-        print("stoppato");
+        //print("stoppato");
         digitalGlitch.enabled = true;
         glitchEffect.enabled = true;
         appoVelocity = rb2d.velocity;
@@ -32,9 +35,10 @@ public class PlayerMovement : MonoBehaviour
         //rb2d.Sleep();
     }
     
+    //Fa ripartire il gioco
     public void Go()
     {
-        print("svegliato");
+        //print("svegliato");
         digitalGlitch.enabled = false;
         glitchEffect.enabled = false;
         rb2d.bodyType = RigidbodyType2D.Dynamic;
@@ -47,6 +51,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //ATTENZIONE: Questo serve per testare la pausa! Va tolto nel gioco definitivo!!!
         if(Input.GetKeyDown(KeyCode.P))
         {
             if(pausa)
@@ -67,6 +72,23 @@ public class PlayerMovement : MonoBehaviour
         {
             jump = true;
         }
+
+        //GESTIONE ANIMAZIONI
+
+        //Camminata
+        if(controller.GetGrounded)
+        {
+
+            animatore.SetFloat("Walking", Mathf.Abs(horizontalMove));
+        }
+        else
+        {
+            animatore.SetFloat("Walking", 0f);
+        }
+
+        //Salto
+        animatore.SetFloat("VelocityY", rb2d.velocity.y);
+
     }
 
     private void FixedUpdate()
@@ -74,5 +96,10 @@ public class PlayerMovement : MonoBehaviour
         controller.Move(horizontalMove * Time.fixedDeltaTime, false, jump);
         jump = false;
         transform.position = new Vector2(Mathf.Clamp(transform.position.x, limiteXMin, limiteXMax), transform.position.y);
+    }
+
+    public bool isGRound
+    {
+        get { return controller.GetGrounded; }
     }
 }

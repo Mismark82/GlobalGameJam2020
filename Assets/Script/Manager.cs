@@ -9,18 +9,22 @@ public class Manager : MonoBehaviour
 {
     public GameStatus status;
     public PlayerMovement player;
-    public GameTimer gameTimerScript;
+    public GameTimer gameTimerScript, timerConsole;
     public Animation gameOverAnimation;
     public BSODMessage message;
     public TextMeshProUGUI bsodText;
     public GameObject consoleGameobject;
-    public TextMeshProUGUI stringaAlfanumerica;
-    public TMP_InputField inputField;
-    public bool consoleOn = false;
-    string stringa1, stringa2;
+    public Transform gameOverPoint;
+    public bool gameOver = false;
+    public Vector2[] difficulty;
+    public DifficultyScript difficultyScript;
+    public bool timerOff = false;
+    int level = 0;
 
     public void Start()
     {
+        InvokeRepeating("SetDifficulty", 60f, 60f);
+        gameOver = false;
         bsodText.text = message.messaggio[Random.Range(0, message.messaggio.Count)];
     }
 
@@ -29,18 +33,24 @@ public class Manager : MonoBehaviour
         player.Pause();
         gameTimerScript.Stop();
         gameOverAnimation.Play();
+        gameOver = true;
     }
 
     public void Update()
     {
-        if(status == GameStatus.GameOver && Input.anyKeyDown)
+        if (player.isGRound && timerOff)
+        {
+            ConsoleON();
+        }
+
+        if (status == GameStatus.GameOver && Input.anyKeyDown)
         {
             SceneManager.LoadScene(0);
         }
 
-        if(Input.GetKeyDown(KeyCode.F))
+        if(player.transform.position.y < gameOverPoint.position.y && !gameOver)
         {
-            ConsoleON();
+            GameOver();
         }
     }
 
@@ -49,12 +59,12 @@ public class Manager : MonoBehaviour
     /// </summary>
     public void ConsoleON()
     {
+        if (player.isGRound && timerOff)
+            timerConsole.Stop();
         player.Pause();
-        string stringa1 = "PROVA";
+        //Console ON
         consoleGameobject.SetActive(true);
-        stringaAlfanumerica.text = stringa1;
-        inputField.Select();
-        consoleOn = true;
+        timerOff = false;
     }
 
     /// <summary>
@@ -62,34 +72,35 @@ public class Manager : MonoBehaviour
     /// </summary>
     public void ConsoleOFF()
     {
+        difficultyScript.SetTimer();
+        timerConsole.Resume();
         player.Go();
+        SequenceCheckerScript script = (SequenceCheckerScript)consoleGameobject.GetComponentInChildren<SequenceCheckerScript>();
+        script.Setup();
         consoleGameobject.SetActive(false);
-        consoleOn = false;
     }
 
-    /// <summary>
-    /// Questa funzione viene chiamata ad ogni "On Value Changed" del input field...controlla che
-    /// l'ultima lettera aggiunta alla stringa sia la medesima della stringa alfanumerica visualizzata nella console
-    /// </summary>
-    public void CheckPhrase()
+    public void SetDifficulty()
     {
-        string stringa2 = inputField.text;
-        string lettera = stringa2.Substring(stringa2.Length - 1);
-        if(lettera == stringa1.Substring(stringa2.Length-1))
+        if(level == 0)
         {
-            //Controlliamo se la lunghezza della stringa1 è uguale alla stringa 2...se si, abbiamo completato la frase
-            if(stringa1.Length == stringa2.Length)
-            {
-                //BRAVO! Aggiungi il tempo al timer e chiudi la console!
-                //gameTimerScript.AddTime();
-                ConsoleOFF();
-            }
-            return;
+            difficultyScript.minTime = difficulty[0].x;
+            difficultyScript.maxTime = difficulty[0].y;
+        }
+        else if (level == 1)
+        {
+            difficultyScript.minTime = difficulty[1].x;
+            difficultyScript.maxTime = difficulty[1].y;
         }
         else
         {
-            //Errore!!!
+            difficultyScript.minTime = difficulty[2].x;
+            difficultyScript.maxTime = difficulty[2].y;
         }
+    }
 
+    public void TimerOff()
+    {
+        timerOff = true;
     }
 }
