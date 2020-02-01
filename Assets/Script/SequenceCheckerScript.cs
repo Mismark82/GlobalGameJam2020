@@ -25,7 +25,9 @@ public class SequenceCheckerScript : MonoBehaviour
                                                 "Software failure. Guru Meditation #00000004.#0000AAC0",
                                                 "Does not compute.",
                                                 "I've got this terrible pain in all the diodes down my left side.",
-                                                "I think you ought to know I'm feeling very depressed."
+                                                "I think you ought to know I'm feeling very depressed.",
+                                                "SPAAAAAAAAAAAAAAACEEEE!!!!!",
+                                                "The cacke is a lie!"
                                             };
 
     // Variabili private
