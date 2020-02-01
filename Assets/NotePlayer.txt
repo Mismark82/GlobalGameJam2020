@@ -1,0 +1,3 @@
+Gravity Scale 5
+Jump Force 1250
+Run Speed 50
