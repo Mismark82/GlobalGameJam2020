@@ -25,7 +25,7 @@ public class LoadScenesScript : MonoBehaviour
             {
                 PlayerPrefs.SetString("Name", nameInputField.text);
                 PlayerPrefs.Save();
-                SceneManager.LoadScene("GameSCene");
+                SceneManager.LoadScene("GameScene");
             }
             else
             {
@@ -33,13 +33,13 @@ public class LoadScenesScript : MonoBehaviour
                 isInserting = false;
             }
         }
-        if (Input.GetKeyDown(KeyCode.L) && !isInserting)
+        if (Input.GetKeyDown(KeyCode.F15) && !isInserting)
         {
             SceneManager.LoadScene("LeaderboardScene");
         }
 
 
-        if (Input.GetKeyDown(KeyCode.Escape) && !isInserting)
+        if (Input.GetKeyDown(KeyCode.L) && !isInserting)
         {
             isInserting = true;
             nameInputField.Select();

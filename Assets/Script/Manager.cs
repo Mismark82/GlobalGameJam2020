@@ -65,6 +65,11 @@ public class Manager : MonoBehaviour
         {
             SceneManager.LoadScene(0);
         }
+        
+        if(status == GameStatus.GameOver && Input.GetKeyDown(KeyCode.Return))
+        {
+            SceneManager.LoadScene("GameScene");
+        }
 
         if(consoleGameobject.activeSelf)
         {

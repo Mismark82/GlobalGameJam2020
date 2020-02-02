@@ -27,7 +27,7 @@ MonoBehaviour:
     Do it again J-O-K-E!
 
 
-    Press escape to continue...'
+    Press escape to return to main menu or return for restart...'
   - 'A problem has been detected and the system has been shut down to prevent damage
     to your computer.
 
@@ -42,7 +42,7 @@ MonoBehaviour:
     Do it again L-O-S-E-R!
 
 
-    Press escape to continue...'
+    Press escape to return to main menu or return for restart...'
   - 'A problem has been detected and the system has been shut down to prevent damage
     to your computer.
 
@@ -57,7 +57,7 @@ MonoBehaviour:
     Do it again C-A-S-U-A-L-G-A-M-E-R!
 
 
-    Press escape to continue...'
+    Press escape to return to main menu or return for restart...'
   - 'A problem has been detected and the system has been shut down to prevent damage
     to your computer.
 
@@ -72,4 +72,4 @@ MonoBehaviour:
     Do it again N-0-0-B!
 
 
-    Press escape to continue...'
+    Press escape to return to main menu or return for restart...'
