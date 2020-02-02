@@ -59,10 +59,10 @@ public class SequenceCheckerScript : MonoBehaviour
     [Tooltip("Il numero di secondi dall'inizio della partita")]
     public int secondsOfPlay = 0;
     [SerializeField]
-    [Tooltip("Il valore minimo della lunghezza della stringa quando la partita è iniziata da meno di 60 secondi")]
+    [Tooltip("Il valore minimo della lunghezza della stringa quando la partita è iniziata da meno di 30 secondi")]
     private int range1 = 4;
     [SerializeField]
-    [Tooltip("Il valore minimo della lunghezza della stringa quando la partita è iniziata da più di 60 secondi, ma meno di 120")]
+    [Tooltip("Il valore minimo della lunghezza della stringa quando la partita è iniziata da più di 30 secondi, ma meno di 120")]
     private int range2 = 5;
     [SerializeField]
     [Tooltip("Il valore minimo della lunghezza della stringa quando la partita è iniziata da più di 120 secondi")]

@@ -6,18 +6,22 @@ using Kino;
 public class PlayerMovement : MonoBehaviour
 {
     public CharacterController2D controller;
+    public AudioClip jumpAudio, scream;
     public float runSpeed = 40f;
     public float limiteXMin, limiteXMax;
     public GlitchEffect glitchEffect;
     public DigitalGlitch digitalGlitch;
     float horizontalMove = 0f;
+    AudioSource aSource;
     bool jump = false, pausa = false;
     Rigidbody2D rb2d;
     Animator animatore;
+    bool screamBool = false;
     Vector2 appoVelocity = new Vector2(0,0);
 
     public void Start()
     {
+        aSource = GetComponent<AudioSource>();
         animatore = GetComponent<Animator>();
         rb2d = GetComponent<Rigidbody2D>();
         digitalGlitch.enabled = false;
@@ -78,16 +82,26 @@ public class PlayerMovement : MonoBehaviour
         //Camminata
         if(controller.GetGrounded)
         {
-
+            aSource.clip = jumpAudio;
             animatore.SetFloat("Walking", Mathf.Abs(horizontalMove));
+            animatore.SetBool("TouchDown", true);
+            screamBool = false;
         }
         else
         {
             animatore.SetFloat("Walking", 0f);
+            animatore.SetBool("TouchDown", false);
         }
 
         //Salto
         animatore.SetFloat("VelocityY", rb2d.velocity.y);
+
+        if(rb2d.velocity.y < -20 && !screamBool)
+        {
+            aSource.clip = scream;
+            aSource.Play();
+            screamBool = true;
+        }
 
     }
 

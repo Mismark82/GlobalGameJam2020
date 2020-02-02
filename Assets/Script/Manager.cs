@@ -16,7 +16,6 @@ public class Manager : MonoBehaviour
     public BSODMessage message;
     public TextMeshProUGUI bsodText;
     public GameObject consoleGameobject;
-    public Transform gameOverPoint;
     public bool gameOver = false;
     public Vector2[] difficulty;
     public DifficultyScript difficultyScript;
@@ -57,11 +56,6 @@ public class Manager : MonoBehaviour
         if (status == GameStatus.GameOver && Input.GetKeyDown(KeyCode.Escape))
         {
             SceneManager.LoadScene(0);
-        }
-
-        if(player.transform.position.y < gameOverPoint.position.y && !gameOver)
-        {
-            GameOver();
         }
 
         if(consoleGameobject.activeSelf)
