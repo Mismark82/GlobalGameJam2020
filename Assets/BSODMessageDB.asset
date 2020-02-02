@@ -13,54 +13,63 @@ MonoBehaviour:
   m_Name: BSODMessageDB
   m_EditorClassIdentifier: 
   messaggio:
-  - 'A problem has been detected and Windows has been shut down to prevent damage
-
+  - 'A problem has been detected and the system has been shut down to prevent damage
     to your computer.
 
 
     YOU_MUST_TRY_HARDER
 
 
-    If this is the first time you''ve seen this Stop error screen
+    If this is the first time you''ve seen this Stop error screen restart the computer.
+    If this screen appears again follow these steps:
 
-    restart the computer. If this screen appears again follow these steps:
 
-
-    Do it again N-E-W-B-I-E!
+    Do it again J-O-K-E!
 
 
     Press escape to continue...'
-  - 'A problem has been detected and Windows has been shut down to prevent damage
-
+  - 'A problem has been detected and the system has been shut down to prevent damage
     to your computer.
 
 
     YOU_ARE_A_BAD_GAMER
 
 
-    If this is the first time you''ve seen this Stop error screen
-
-    restart the computer. If this screen appears again follow these steps:
+    If this is the first time you''ve seen this Stop error screen restart the computer.
+    If this screen appears again follow these steps:
 
 
     Do it again L-O-S-E-R!
 
 
     Press escape to continue...'
-  - 'A problem has been detected and Windows has been shut down to prevent damage
-
+  - 'A problem has been detected and the system has been shut down to prevent damage
     to your computer.
 
 
     WHAT_THE_HECK_ARE_YOU_DOING_?
 
 
-    If this is the first time you''ve seen this Stop error screen
-
-    restart the computer. If this screen appears again follow these steps:
+    If this is the first time you''ve seen this Stop error screen restart the computer.
+    If this screen appears again follow these steps:
 
 
     Do it again C-A-S-U-A-L-G-A-M-E-R!
+
+
+    Press escape to continue...'
+  - 'A problem has been detected and the system has been shut down to prevent damage
+    to your computer.
+
+
+    NOT_ENOUGH_SKILL
+
+
+    If this is the first time you''ve seen this Stop error screen restart the computer.
+    If this screen appears again follow these steps:
+
+
+    Do it again N-0-0-B!
 
 
     Press escape to continue...'
