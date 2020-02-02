@@ -52,9 +52,7 @@ public class SequenceCheckerScript : MonoBehaviour
     [SerializeField]
     private Text errorField;
     //public List<KeyCode> sequenceToCheck = new List<KeyCode>();
-    [SerializeField]
-    [Tooltip("Player Code é usato per inizializzare il random, verrà fuori dal nome inserito dal giocatore")]
-    private int playerCode = 574;
+    private int playerCode = 0;
     [SerializeField]
     [Tooltip("Il numero di secondi dall'inizio della partita")]
     public int secondsOfPlay = 0;
@@ -82,8 +80,14 @@ public class SequenceCheckerScript : MonoBehaviour
         // Randomize initial state on script start
         int millis = System.DateTime.UtcNow.Millisecond + 1;
         int secs = System.DateTime.UtcNow.Second + 1;
-        int initState = secs * millis * playerCode;
+        string playerName = PlayerPrefs.GetString("Name");
 
+        foreach (char c in playerName)
+        {
+            playerCode += (int)c + 1;
+        }
+
+        int initState = secs * millis * playerCode;
         UnityEngine.Random.InitState(initState);
 
         // Will have to be commented later on
