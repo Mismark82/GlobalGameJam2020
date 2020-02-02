@@ -426,7 +426,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 412460675}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 706d66ed25269cc40831f1b4c92bc45d, type: 3}
@@ -437,9 +437,9 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 0
+  Priority: 128
   DopplerLevel: 1
-  MinDistance: 15.150461
+  MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
@@ -559,7 +559,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ff50223bba1f6240baaa05bdbe7454b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  yOffset: 5
+  yOffset: 6.3
   xOffset: 3
   xClamp: 8
   platformsPrefabsA:
@@ -3558,6 +3558,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 4710823700462581263, guid: f1cef43d50812fc4a869be3d2caeed05,
+        type: 3}
+      propertyPath: m_JumpForce
+      value: 1350
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1cef43d50812fc4a869be3d2caeed05, type: 3}

@@ -6,7 +6,6 @@ using Kino;
 public class PlayerMovement : MonoBehaviour
 {
     public CharacterController2D controller;
-    public AudioClip jumpAudio, scream;
     public float runSpeed = 40f;
     public float limiteXMin, limiteXMax;
     public GlitchEffect glitchEffect;
@@ -82,7 +81,6 @@ public class PlayerMovement : MonoBehaviour
         //Camminata
         if(controller.GetGrounded)
         {
-            aSource.clip = jumpAudio;
             animatore.SetFloat("Walking", Mathf.Abs(horizontalMove));
             animatore.SetBool("TouchDown", true);
             screamBool = false;
@@ -95,13 +93,6 @@ public class PlayerMovement : MonoBehaviour
 
         //Salto
         animatore.SetFloat("VelocityY", rb2d.velocity.y);
-
-        if(rb2d.velocity.y < -20 && !screamBool)
-        {
-            aSource.clip = scream;
-            aSource.Play();
-            screamBool = true;
-        }
 
     }
 
