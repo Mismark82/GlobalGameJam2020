@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using TMPro;
 
 public enum GameStatus { Play, GameOver, Console};
 public class Manager : MonoBehaviour
 {
     public GameStatus status;
+    public InputField inp;
     public AudioClip music, soundError;
     public AudioSource aSource;
     public PlayerMovement player;
@@ -20,6 +22,7 @@ public class Manager : MonoBehaviour
     public Vector2[] difficulty;
     public DifficultyScript difficultyScript;
     public HandsManager handManager;
+    public Animator manateAnim;
     [HideInInspector]
     public bool timerOff = false;
     int level = 0;
@@ -48,6 +51,11 @@ public class Manager : MonoBehaviour
 
     public void Update()
     {
+        if(consoleGameobject.activeSelf)
+        {
+            inp.ActivateInputField();
+        }
+
         if (player.isGRound && timerOff)
         {
             ConsoleON();
@@ -76,6 +84,7 @@ public class Manager : MonoBehaviour
         {
             timerConsole.Stop();
             player.Pause();
+            manateAnim.SetTrigger("Manate");
             //Console ON
             consoleGameobject.SetActive(true);
             consoleGameobject.GetComponentInChildren<SequenceCheckerScript>().secondsOfPlay = (int) Mathf.Round(hiddenTimer.GetTimeAmount());
