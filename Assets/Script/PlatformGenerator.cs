@@ -67,14 +67,15 @@ public class PlatformGenerator : MonoBehaviour
         }
         if (distance > 3)
         {
-            int randomIndex = Random.Range(0, 2);
+            int randomIndex = Random.Range(0, currentPlatformsPool.Length);
             ultimoIndice = randomIndex;
             return currentPlatformsPool[randomIndex];
         }
         else
         {
-            ultimoIndice = 0;
-            return currentPlatformsPool[0];
+            int randomIndex = Random.Range(0, ultimoIndice);
+            ultimoIndice = randomIndex;
+            return currentPlatformsPool[randomIndex];
         }
 
 

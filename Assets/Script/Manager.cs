@@ -4,12 +4,14 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 
-public enum GameStatus { Play, GameOver};
+public enum GameStatus { Play, GameOver, Console};
 public class Manager : MonoBehaviour
 {
     public GameStatus status;
+    public AudioClip music, soundError;
+    public AudioSource aSource;
     public PlayerMovement player;
-    public GameTimer gameTimerScript, timerConsole;
+    public GameTimer gameTimerScript, timerConsole, hiddenTimer;
     public Animation gameOverAnimation;
     public BSODMessage message;
     public TextMeshProUGUI bsodText;
@@ -18,6 +20,8 @@ public class Manager : MonoBehaviour
     public bool gameOver = false;
     public Vector2[] difficulty;
     public DifficultyScript difficultyScript;
+    public HandsManager handManager;
+    [HideInInspector]
     public bool timerOff = false;
     int level = 0;
 
@@ -30,9 +34,16 @@ public class Manager : MonoBehaviour
 
     public void GameOver()
     {
+        timerConsole.Stop();
         player.Pause();
         gameTimerScript.Stop();
+        aSource.clip = soundError;
+        aSource.loop = false;
         gameOverAnimation.Play();
+        if(consoleGameobject.activeSelf)
+        {
+            consoleGameobject.SetActive(false);
+        }
         gameOver = true;
     }
 
@@ -43,7 +54,7 @@ public class Manager : MonoBehaviour
             ConsoleON();
         }
 
-        if (status == GameStatus.GameOver && Input.anyKeyDown)
+        if (status == GameStatus.GameOver && Input.GetKeyDown(KeyCode.Escape))
         {
             SceneManager.LoadScene(0);
         }
@@ -51,6 +62,14 @@ public class Manager : MonoBehaviour
         if(player.transform.position.y < gameOverPoint.position.y && !gameOver)
         {
             GameOver();
+        }
+
+        if(consoleGameobject.activeSelf)
+        {
+            if(Input.anyKeyDown)
+            {
+                handManager.MoveHand();
+            }
         }
     }
 
@@ -60,11 +79,15 @@ public class Manager : MonoBehaviour
     public void ConsoleON()
     {
         if (player.isGRound && timerOff)
+        {
             timerConsole.Stop();
-        player.Pause();
-        //Console ON
-        consoleGameobject.SetActive(true);
-        timerOff = false;
+            player.Pause();
+            //Console ON
+            consoleGameobject.SetActive(true);
+            consoleGameobject.GetComponentInChildren<SequenceCheckerScript>().secondsOfPlay = (int) Mathf.Round(hiddenTimer.GetTimeAmount());
+            consoleGameobject.GetComponentInChildren<SequenceCheckerScript>().Setup();
+            timerOff = false;
+        }
     }
 
     /// <summary>

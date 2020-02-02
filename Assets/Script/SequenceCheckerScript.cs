@@ -27,7 +27,9 @@ public class SequenceCheckerScript : MonoBehaviour
                                                 "I've got this terrible pain in all the diodes down my left side.",
                                                 "I think you ought to know I'm feeling very depressed.",
                                                 "SPAAAAAAAAAAAAAAACEEEE!!!!!",
-                                                "The cacke is a lie!"
+                                                "The cake is a lie!",
+                                                "Seriously: this is not a bug. It's an undocumentend feature.",
+                                                ""
                                             };
 
     // Variabili private
@@ -55,16 +57,16 @@ public class SequenceCheckerScript : MonoBehaviour
     private int playerCode = 574;
     [SerializeField]
     [Tooltip("Il numero di secondi dall'inizio della partita")]
-    private int secondsOfPlay = 0;
+    public int secondsOfPlay = 0;
     [SerializeField]
     [Tooltip("Il valore minimo della lunghezza della stringa quando la partita è iniziata da meno di 60 secondi")]
-    private int rangeUnder60 = 8;
+    private int range1 = 4;
     [SerializeField]
     [Tooltip("Il valore minimo della lunghezza della stringa quando la partita è iniziata da più di 60 secondi, ma meno di 120")]
-    private int range61_120 = 15;
+    private int range2 = 5;
     [SerializeField]
     [Tooltip("Il valore minimo della lunghezza della stringa quando la partita è iniziata da più di 120 secondi")]
-    private int rangeOver120 = 21;
+    private int range3 = 6;
 
     //public delegate void StringRecognized();
     //public static event StringRecognized OnRecognize;
@@ -185,20 +187,20 @@ public class SequenceCheckerScript : MonoBehaviour
     private int SelectCharNumber()
     {
         //numberOfChars = UnityEngine.Random.Range(0, 2);
-        if (secondsOfPlay < 60)
+        if (secondsOfPlay < 30)
+        {
+            // Meno di 30 secondi
+            numberOfChars = range1;
+        }
+        else if (secondsOfPlay < 60)
         {
             // Meno di 60 secondi
-            numberOfChars = rangeUnder60;
-        }
-        else if (secondsOfPlay < 120)
-        {
-            // Meno di 120 secondi
-            numberOfChars = range61_120;
+            numberOfChars = range2;
         }
         else
         {
-            // più di 120 secondi
-            numberOfChars = rangeOver120;
+            // più di 60 secondi
+            numberOfChars = range3;
         }
         return numberOfChars;
     }
