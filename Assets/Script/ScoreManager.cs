@@ -7,7 +7,9 @@ public class ScoreManager : MonoBehaviour
 {
     public TextMeshPro scoreText;
 
-    public Transform currentPlayerPosition;
+    private Transform currentPlayerPosition;
+    public Transform currentPlayer1Position;
+    public Transform currentPlayer2Position;
     private float prevPlayerPosition;
     public int playerScore;
 
@@ -18,6 +20,7 @@ public class ScoreManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        currentPlayerPosition = PlayerPrefs.GetInt("Player", 1) == 1 ? currentPlayer1Position : currentPlayer2Position;
         prevPlayerPosition = currentPlayerPosition.position.y;
     }
 

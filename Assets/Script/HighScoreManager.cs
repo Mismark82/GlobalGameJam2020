@@ -39,7 +39,7 @@ public class HighScoreManager : MonoBehaviour
         for (int i = 0; i < 5; i++)
         {
             HighScoreRecord tempHighScore = new HighScoreRecord(
-                     PlayerPrefs.GetString("Player" + i, "___"),
+                     PlayerPrefs.GetString("Player" + i, "BOY"),
                      PlayerPrefs.GetInt("Score" + i, 0)
                 );
 
@@ -63,14 +63,3 @@ public class HighScoreManager : MonoBehaviour
     }
 }
 
-public class HighScoreRecord
-{
-    public string playerName;
-    public int playerScore;
-
-    public HighScoreRecord(string playerName, int playerScore)
-    {
-        this.playerName = playerName;
-        this.playerScore = playerScore;
-    }
-}

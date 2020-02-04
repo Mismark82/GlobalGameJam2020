@@ -4,15 +4,18 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+using Cinemachine;
 
 public enum GameStatus { Play, GameOver, Console};
 public class Manager : MonoBehaviour
 {
+    public CinemachineVirtualCamera Vcam;
     public GameStatus status;
     public InputField inp;
     public AudioClip music, soundError;
     public AudioSource aSource;
-    public PlayerMovement player;
+    private PlayerMovement player;
+    public PlayerMovement player1, player2;
     public GameTimer gameTimerScript, timerConsole, hiddenTimer;
     public Animation gameOverAnimation;
     public BSODMessage message;
@@ -31,6 +34,16 @@ public class Manager : MonoBehaviour
 
     public void Start()
     {
+        player = PlayerPrefs.GetInt("Player") == 2 ? player2 : player1;
+        if (player == player1)
+        {
+            player2.gameObject.SetActive(false);
+        }
+        else
+        {
+             player1.gameObject.SetActive(false);
+        }
+        Vcam.Follow = player.transform;
         hiScoreManager = GetComponent<HighScoreManager>();
         scoreManager = GetComponent<ScoreManager>();
         InvokeRepeating("SetDifficulty", 60f, 60f);
