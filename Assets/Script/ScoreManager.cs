@@ -9,7 +9,7 @@ public class ScoreManager : MonoBehaviour
 
     public Transform currentPlayerPosition;
     private float prevPlayerPosition;
-    private int playerScore;
+    public int playerScore;
 
     [SerializeField]
     private int scoreMultiply;

@@ -23,12 +23,16 @@ public class Manager : MonoBehaviour
     public DifficultyScript difficultyScript;
     public HandsManager handManager;
     public Animator manateAnim;
+    HighScoreManager hiScoreManager;
+    ScoreManager scoreManager;
     [HideInInspector]
     public bool timerOff = false;
     int level = 0;
 
     public void Start()
     {
+        hiScoreManager = GetComponent<HighScoreManager>();
+        scoreManager = GetComponent<ScoreManager>();
         InvokeRepeating("SetDifficulty", 60f, 60f);
         gameOver = false;
         bsodText.text = message.messaggio[Random.Range(0, message.messaggio.Count)];
@@ -36,6 +40,7 @@ public class Manager : MonoBehaviour
 
     public void GameOver()
     {
+        hiScoreManager.RegisterScore(PlayerPrefs.GetString("Name"), scoreManager.playerScore);
         timerConsole.Stop();
         player.Pause();
         gameTimerScript.Stop();
