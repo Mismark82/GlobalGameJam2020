@@ -1107,7 +1107,7 @@ Transform:
   m_Children:
   - {fileID: 4902730761597646097}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &711695725 stripped
 GameObject:
@@ -1235,7 +1235,7 @@ RectTransform:
   - {fileID: 1519363166}
   - {fileID: 444665082}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2077,6 +2077,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreText: {fileID: 1051152094}
   currentPlayerPosition: {fileID: 1590760375}
+  playerScore: 0
   scoreMultiply: 10
 --- !u!114 &1204090101
 MonoBehaviour:
@@ -2628,7 +2629,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!224 &1514893738
 RectTransform:
@@ -2650,7 +2651,7 @@ RectTransform:
   - {fileID: 1562602813}
   - {fileID: 1235071228}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
